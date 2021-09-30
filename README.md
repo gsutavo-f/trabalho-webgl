@@ -1,4 +1,4 @@
-# Boilerplate WebGL
+# Trabalho 1 - WebGL
 
 ## Requisitos
 

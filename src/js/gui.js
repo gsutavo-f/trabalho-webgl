@@ -64,3 +64,35 @@ const loadGUI = () => {
   cameraFolder.add(camera, "lookCenter").name("Look at center");
   cameraFolder.add(camera, "rotateCenter").name("Rotate around center");
 };
+
+// functions using gui.js variables
+function computeMatrix(viewProjectionMatrix, translation, rotations, translations, scalings) {
+  let matrix = m4.translate(
+    viewProjectionMatrix,
+    translation[0],
+    translation[1],
+    translation[2],
+  );
+  matrix = m4.xRotate(matrix, rotations[0]);
+  matrix = m4.zRotate(matrix, rotations[2]);
+  matrix = m4.translate(matrix, translations[0], translations[1], translations[2]);
+  matrix = m4.scale(matrix, scalings[0], scalings[1], scalings[2]);
+  matrix = splineCurve(matrix, 50 - config.curve, [75, 0, 0, -75], [0, -100, 100, 0]);
+  return m4.yRotate(matrix, rotations[1]);
+}
+
+function getTargetValue() {
+  if(camera.lookCenter) { return [0, 0, 0]; }
+  return [camera.cameraX + camera.rotateCamera, camera.cameraY, camera.cameraZ - 100];
+}
+
+function rotateCameraAroundCenter(matrix) {
+  let radius = 200;
+  
+  if(camera.rotateCenter) {
+    matrix = m4.yRotation(degToRad(camera.rotateCamera));
+    return m4.translate(matrix, 0, 0, radius * 1.5);
+  }
+
+  return matrix;
+}

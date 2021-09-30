@@ -1,4 +1,3 @@
-// VARIABLES
 const { gl, meshProgramInfo } = initializeWorld();
 
 const sphereBufferInfo = flattenedPrimitives.createSphereBufferInfo(gl, 10, 12, 6);
