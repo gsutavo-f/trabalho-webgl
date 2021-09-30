@@ -11,7 +11,7 @@ const vertexShaderSource = `#version 300 es
 
     v_color = a_color;
   }
-`;
+`
 
 const fragmentShaderSource = `#version 300 es
   precision highp float;
@@ -25,22 +25,22 @@ const fragmentShaderSource = `#version 300 es
   void main() {
     outColor = v_color * u_colorMult;
   }
-`;
+`
 
 const initializeWorld = () => {
-  const canvas = document.querySelector("#canvas");
-  const gl = canvas.getContext("webgl2");
+  const canvas = document.querySelector("#canvas")
+  const gl = canvas.getContext("webgl2")
   if (!gl) {
-    return;
+    return
   }
-  twgl.setAttributePrefix("a_");
+  twgl.setAttributePrefix("a_")
   const meshProgramInfo = twgl.createProgramInfo(gl, [
     vertexShaderSource,
     fragmentShaderSource,
-  ]);
+  ])
 
   return {
     gl,
     meshProgramInfo,
-  };
-};
+  }
+}
