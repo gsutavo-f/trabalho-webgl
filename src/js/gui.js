@@ -83,7 +83,6 @@ const loadGUI = () => {
 
 }
 
-// functions using gui.js variables
 function computeMatrix(viewProjectionMatrix, translation) {
   let matrix = m4.translate(
     viewProjectionMatrix,
@@ -130,18 +129,18 @@ function animateObj(now) {
     if(animations.animationType == "Rotation") {
       const animateRotation = (now) => {
         now *= 0.001
-        let deltaTime = now - then
+        let deltaT = now - then
         then = now
     
         if(animations.directionOption == "Positive") {
-          config.rotateX += deltaTime * animationSpeed;
+          config.rotateX += deltaT * animationSpeed;
           if(config.rotateX < rotationTime) {
             requestAnimationFrame(animateRotation)
           } else {
             config.rotateX = rotationTime
           }
         } else if(animations.directionOption == "Negative") {
-          config.rotateX -= deltaTime * animationSpeed
+          config.rotateX -= deltaT * animationSpeed
           if(config.rotateX > (rotationTime * -1)) {
             requestAnimationFrame(animateRotation)
           } else {
@@ -154,18 +153,18 @@ function animateObj(now) {
     } else if(animations.animationType == "Translation") {
       const animateTranslation = (now) => {
         now *= 0.001
-        let deltaTime = now - then
+        let deltaT = now - then
         then = now
     
         if(animations.directionOption == "Positive") {
-          config.translateX += deltaTime * animationSpeed
+          config.translateX += deltaT * animationSpeed
           if(config.translateX < translationTime) {
             requestAnimationFrame(animateTranslation)
           } else {
             config.translateX = translationTime
           }
         } else if(animations.directionOption == "Negative") {
-          config.translateX -= deltaTime * animationSpeed
+          config.translateX -= deltaT * animationSpeed
           if(config.translateX > (translationTime * -1)) {
             requestAnimationFrame(animateTranslation)
           } else {
@@ -181,18 +180,18 @@ function animateObj(now) {
       camera.rotateCenter = true
       const animateCameraRotation = (now) => {
         now *= 0.001
-        let deltaTime = now - then
+        let deltaT = now - then
         then = now
     
         if(animations.directionOption == "Positive") {
-          camera.rotateCamera += deltaTime * animationSpeed;
+          camera.rotateCamera += deltaT * animationSpeed;
           if(camera.rotateCamera < rotationTime) {
             requestAnimationFrame(animateCameraRotation)
           } else {
             camera.rotateCamera = rotationTime
           }
         } else if(animations.directionOption == "Negative") {
-          camera.rotateCamera -= deltaTime * animationSpeed
+          camera.rotateCamera -= deltaT * animationSpeed
           if(camera.rotateCamera > (rotationTime * -1)) {
             requestAnimationFrame(animateCameraRotation)
           } else {
@@ -206,18 +205,18 @@ function animateObj(now) {
       camera.rotateCenter = false
       const animateCameraTranslation = (now) => {
         now *= 0.001
-        let deltaTime = now - then
+        let deltaT = now - then
         then = now
     
         if(animations.directionOption == "Positive") {
-          camera.cameraX += deltaTime * animationSpeed
+          camera.cameraX += deltaT * animationSpeed
           if(camera.cameraX < translationTime) {
             requestAnimationFrame(animateCameraTranslation)
           } else {
             camera.cameraX = translationTime
           }
         } else if(animations.directionOption == "Negative") {
-          camera.cameraX -= deltaTime * animationSpeed
+          camera.cameraX -= deltaT * animationSpeed
           if(camera.cameraX > (translationTime * -1)) {
             requestAnimationFrame(animateCameraTranslation)
           } else {
