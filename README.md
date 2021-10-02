@@ -5,7 +5,7 @@
 Não consegui enviar o vídeo na melhor qualidade possível devido ao tamanho do arquivo, portanto,
 caso queira ve-lo em uma qualidade maior, vou deixar o link abaixo, assim como o github do projeto.
 
-- [Vídeo]()
+- [Vídeo](censored)
 
 - [Projeto](https://github.com/gsutavo-f/trabalho-webgl)
 
