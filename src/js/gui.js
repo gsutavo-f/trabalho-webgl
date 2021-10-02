@@ -84,19 +84,23 @@ const loadGUI = () => {
 }
 
 // functions using gui.js variables
-function computeMatrix(viewProjectionMatrix, translation, rotations, translations, scalings) {
+function computeMatrix(viewProjectionMatrix, translation) {
   let matrix = m4.translate(
     viewProjectionMatrix,
     translation[0],
     translation[1],
     translation[2],
   )
-  matrix = m4.xRotate(matrix, rotations[0])
-  matrix = m4.zRotate(matrix, rotations[2])
-  matrix = m4.translate(matrix, translations[0], translations[1], translations[2])
-  matrix = m4.scale(matrix, scalings[0], scalings[1], scalings[2])
-  matrix = splineCurve(matrix, 50 - config.curve, [75, 0, 0, -75], [0, -100, 100, 0])
-  return m4.yRotate(matrix, rotations[1])
+  return matrix
+}
+
+function computeLastModel(model, rotations, translations, scalings) {
+  model = m4.xRotate(model, rotations[0])
+  model = m4.zRotate(model, rotations[2])
+  model = m4.translate(model, translations[0], translations[1], translations[2])
+  model = m4.scale(model, scalings[0], scalings[1], scalings[2])
+  model = splineCurve(model, 50 - config.curve, [75, 0, 0, -75], [0, -100, 100, 0])
+  return m4.yRotate(model, rotations[1])
 }
 
 function getTargetValue() {

@@ -17,6 +17,7 @@ let shapes = [
 let objectsToDraw = []
 let objects = []
 let baseHue = rand(360)
+let numModels = 0
 
 
 // FUNCTIONS
@@ -58,11 +59,13 @@ function addMod() {
         vertexArray: shape.vertexArray,
         uniforms: object.uniforms
     })
+    numModels++
 }
 
 function removeMod() {
     objects.pop()
     objectsToDraw.pop()
+    numModels--
 }
 
 function splineCurve(matrix, translateCurve, x, y) {

@@ -38,35 +38,41 @@ function main() {
     objects.forEach(function(object) {
       object.uniforms.u_matrix = computeMatrix(
         viewProjectionMatrix,
-        object.translation,
+        object.translation
+      )
+    })
+    
+    if(numModels > 0) {
+      objects[numModels - 1].uniforms.u_matrix = computeLastModel(
+        objects[numModels - 1].uniforms.u_matrix,
         modelRotations,
         modelTranslations,
         modelScalings
       )
-    })
-
+    }
+    
     let lastUsedProgramInfo = null
     let lastUsedVertexArray = null
-
+    
     objectsToDraw.forEach(function(object) {
       let programInfo = object.programInfo
       let vertexArray = object.vertexArray
-
+      
       if(programInfo !== lastUsedProgramInfo) {
         lastUsedProgramInfo = programInfo
         gl.useProgram(programInfo.program)
       }
-
+      
       if(lastUsedVertexArray !== vertexArray) {
         lastUsedVertexArray = vertexArray
         gl.bindVertexArray(vertexArray)
       }
-
+      
       twgl.setUniforms(programInfo, object.uniforms)
-
+      
       twgl.drawBufferInfo(gl, object.bufferInfo)
     })
-
+    
     requestAnimationFrame(render)
   }
 
